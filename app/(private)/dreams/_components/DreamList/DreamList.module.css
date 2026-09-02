@@ -1,0 +1,115 @@
+/* List */
+.list {
+  list-style: none;
+  display: grid;
+  padding-inline-start: 0;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(300, 1fr));
+  grid-auto-rows: 200px;
+
+  & a {
+    text-decoration: none;
+  }
+}
+
+/* Item */
+.item {
+  border-radius: 6px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 4px 4px 7px #1f1f1f;
+  background-image:
+    linear-gradient(-180deg, var(--secondary), rgba(256, 256, 256, 0.1));
+
+
+  --bg-x: 0%;
+  --bg-y: 0%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    z-index: -1;
+    background-image: var(--bg-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: transform 0.5s linear, opacity 0.2s ease;
+    transform: translate(var(--bg-x), var(--bg-y));
+  }
+
+  &:hover {
+    &::before {
+      opacity: 0.7;
+      transform: scale(1.2);
+    }
+
+    & .contentContainer {
+      opacity: 1;
+    }
+  }
+
+  .itemHeading {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font: var(--font-roboto-mono);
+    color: var(--text-title);
+    padding-inline: 0.5rem;
+    padding-block: 0.5rem;
+
+    .itemTitle {
+      font-weight: 500;
+      font-size: 1.25rem;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .itemDate {
+      font-size: 0.75rem;
+    }
+
+    .metaContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .itemContent {
+    padding-inline: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: var(--font-roboto-mono);
+    font-size: 0.875rem;
+    margin-block: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    margin-block-end: 0.5rem;
+  }
+}
+
+a:focus-visible .item {
+  border: 2px outset var(--accent);
+}
+
+.contentContainer {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-image: linear-gradient(0deg, var(--secondary), rgba(256, 256, 256, 0.1));
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}

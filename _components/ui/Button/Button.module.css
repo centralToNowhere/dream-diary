@@ -1,0 +1,68 @@
+.button {
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 1px outset var(--border-button);
+  border-radius: 12px;
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+
+  svg {
+    pointer-events: none;
+    width: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    border: 1px inset var(--border-button);
+    color: color-mix(in srgb, var(--accent) 12%, var(--text-primary) 50%)
+  }
+}
+
+.variant {
+  &.default {
+    &:hover {
+      text-shadow: -1px -1px 1px #000;
+    }
+  }
+
+  &.secondary {
+    background-color: var(--tertiary);
+  }
+
+  &.outline {
+    background-color: var(--background);
+    border: 1px solid var(--border);
+
+    &:hover {
+      text-decoration: underline;
+      color: color-mix(in srgb, var(--accent) 52%, var(--background))
+    }
+  }
+
+  &.danger {
+    background-color: var(--danger);
+  }
+}
+
+.size {
+  &.default {
+    font-size: var(--fs-md);
+    padding-block: 0.5rem;
+    padding-inline: 0.75rem;
+  }
+
+  &.sm {
+    font-size: var(--fs-sm);
+    padding-block: 0.25rem;
+    padding-inline: 0.5rem;
+  }
+
+  &.lg {
+    font-size: var(--fs-lg);
+    padding-block: 0.75rem;
+    padding-inline: 1.25rem;
+  }
+}

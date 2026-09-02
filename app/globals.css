@@ -1,0 +1,217 @@
+:root {
+  /* colors */
+  --light-grey: #e8dfdf;
+  --light-grey-2: #b2b4b2;
+  --dark-grey: #1f1f1f;
+  --dark-grey-2: #222;
+  --violet: #353177;
+  --violet-2: #18154d;
+  --lavander: #9e86ca;
+  --dark-blue: #122558;
+  --light-blue-2: #799cc5;
+  --pink: #995f91;
+  --black: #000;
+  --white: #fff;
+  --ash: #737373;
+  --red: #dc2626;
+  --sand: rgb(219, 208, 14);
+  --green: #16a34a;
+
+  /* common start */
+  --border-radius: 6px;
+  --screen-factor: 0.5rem;
+  --screen-factor-sm: calc(var(--screen-factor));
+  --screen-factor-md: calc(var(--screen-factor) * 2);
+  --screen-factor-lg: var(--screen-factor-md);
+  --screen-factor-xl: calc(var(--screen-factor) * 4);
+  --header-height: 70px;
+
+  --shadow: var(--black);
+  --danger: var(--red);
+  --warn: var(--sand);
+  --success: var(--green);
+  --link-visited: var(--accent);
+
+  /* text */
+  --text-faded: var(--ash);
+  --fs-sm: 0.8125rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.75rem;
+
+  /* padding */
+  --pd: var(--screen-factor);
+
+  /* common end */
+
+  /* theme dependant variables start */
+
+  .theme-dark {
+    --background: var(--dark-grey);
+    --foreground: var(--light-grey);
+    --border: var(--light-grey-2);
+    --border-button: var(--dark-grey-2);
+
+    --primary: var(--light-grey);
+    --secondary: var(--violet);
+    --tertiary: var(--dark-grey);
+    --accent: var(--light-blue-2);
+
+
+    --text-primary: var(--light-grey);
+    --text-secondary: var(--dark-grey);
+  }
+
+  .theme-light {
+    --background: var(--light-grey);
+    --foreground: var(--dark-grey);
+    --border: var(--dark-grey-2);
+    --border-button: var(--light-grey-2);
+
+    --primary: var(--dark-grey);
+    --secondary: var(--lavander);
+    --tertiary: var(--light-grey);
+    --accent: var(--pink);
+
+    --text-primary: var(--dark-grey);
+    --text-secondary: var(--light-grey);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: 1px solid var(--accent);
+  border-radius: 12px;
+}
+
+*::selection {
+  color: var(--text-secondary);
+  background-color: var(--accent);
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
+
+
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: underline solid white;
+  color: unset;
+
+  &:visited {
+    color: unset;
+  }
+
+  &:focus-visible {
+    color: var(--accent);
+  }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--dark-grey);
+    --foreground: var(--light-grey);
+    --border: var(--light-grey-2);
+    --border-button: var(--dark-grey-2);
+
+    --primary: var(--light-grey);
+    --secondary: var(--violet);
+    --tertiary: var(--dark-grey);
+    --accent: var(--light-blue-2);
+
+
+    --text-primary: var(--light-grey);
+    --text-secondary: var(--dark-grey);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: var(--light-grey);
+    --foreground: var(--dark-grey);
+    --border: var(--dark-grey-2);
+    --border-button: var(--light-grey-2);
+
+    --primary: var(--dark-grey);
+    --secondary: var(--lavander);
+    --tertiary: var(--light-grey);
+    --accent: var(--pink);
+
+    --text-primary: var(--dark-grey);
+    --text-secondary: var(--light-grey);
+  }
+}
+
+/* sm */
+@media (width <=768px) {
+  main {
+    padding-inline: var(--screen-factor-sm);
+  }
+}
+
+/* md */
+@media (768px < width <=992px) {
+  main {
+    padding-inline: var(--screen-factor-md)
+  }
+
+
+  :root {
+    --pd: var(--screen-factor-md);
+  }
+}
+
+/* lg */
+@media (992px < width <=1200px) {
+  main {
+    padding-inline: var(--screen-factor-lg);
+  }
+
+  :root {
+    --pd: var(--screen-factor-lg);
+  }
+}
+
+/* xl */
+@media (width > 1200px) {
+  main {
+    padding-inline: var(--screen-factor-xl);
+  }
+
+  :root {
+    --pd: var(--screen-factor-xl);
+  }
+}

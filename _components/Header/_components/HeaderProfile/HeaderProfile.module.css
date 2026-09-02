@@ -1,0 +1,52 @@
+.headerProfileButtonContent {
+  padding-inline: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px outset var(--border-button);
+  border-radius: 12px;
+  gap: 0.5rem;
+  height: 100%;
+  width: 220px;
+
+  &:hover {
+    border: 2px inset var(--border-button);
+  }
+
+  .headerProfileButtonData {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .headerProfileAvatarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .headerProfileName {
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: hidden;
+
+    font-weight: 500;
+  }
+
+  .headerProfileEmail {
+    font-size: 0.75rem;
+  }
+}
+
+.profileMenuPopupContent:has(.profileMenuItem) {
+  border-radius: 12px;
+}
+
+.profileMenuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 220px;
+}

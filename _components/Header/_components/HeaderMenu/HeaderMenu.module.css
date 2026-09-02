@@ -1,0 +1,85 @@
+.headerNav {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 1rem;
+  min-width: 0;
+
+  .headerNavItem {
+    border: 2px outset var(--border-button);
+    padding: 0.5rem;
+    border-radius: 12px;
+
+    &:hover {
+      border: 2px inset var(--border-button);
+    }
+  }
+}
+
+.headerNavList {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  justify-content: space-between;
+  overflow: auto;
+  padding: 0.25rem;
+  margin-right: 1rem;
+
+  /* 2. Hides scrollbar for Firefox */
+  scrollbar-width: none;
+
+  /* 3. Hides scrollbar for IE and Legacy Edge */
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.headerNavItems {
+  display: flex;
+  gap: 1rem;
+}
+
+.headerNavItem {
+  font-family: var(--font-roboto-mono);
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text-primary);
+
+  &:active {
+    border-style: inset;
+  }
+
+  &[data-highlighted] {
+    border-radius: 0;
+  }
+
+  &:hover {
+    color: var(--accent);
+    text-shadow: -1px -1px 1px #000;
+  }
+}
+
+.dropdownContent {
+  border-radius: 0;
+  width: 100vw;
+  height: calc(100dvh - var(--header-height));
+  border: none;
+}
+
+.dropdownTrigger {
+  height: 100%;
+  padding: 0.75rem;
+  box-sizing: content-box;
+}
+
+.backButton {
+  padding: 0.5rem;
+}
+
+.logoItem {
+  display: flex;
+  justify-content: center;
+}

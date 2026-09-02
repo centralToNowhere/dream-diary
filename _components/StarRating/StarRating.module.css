@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.outer {
+  position: relative;
+  display: inline;
+  color: var(--text-faded);
+  font-size: 1rem;
+
+  .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    overflow: hidden;
+    width: var(--star-rating);
+    color: rgb(166, 166, 44);
+  }
+}
+
+.value {
+  font-size: 0.75rem;
+  font-weight: 300;
+  white-space: nowrap;
+}

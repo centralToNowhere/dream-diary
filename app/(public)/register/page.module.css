@@ -1,0 +1,28 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.description {
+  margin-top: 0.75rem;
+  color: var(--text-faded);
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.toLogin {
+  display: flex;
+  justify-content: center;
+}
