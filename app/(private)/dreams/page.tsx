@@ -1,9 +1,11 @@
-import Link from "next/link";
-import styles from "./page.module.css";
-import getUserDreams from "@/features/dreams/getUserDreams"
-import { DreamList } from "./_components/DreamList";
-import { Button } from "@/_components/ui";
-import { PlusIcon } from "lucide-react";
+import { Fragment } from 'react';
+import Link from 'next/link';
+import styles from './page.module.css';
+import getUserDreams from '@/lib/features/dreams/getUserDreams';
+import { DreamList } from './_components/DreamList';
+import { Button } from '@/_components/ui';
+import { PlusIcon } from 'lucide-react';
+import PageHeader from '@/_components/PageHeader';
 
 export default async function DreamsPage() {
   const dreams = await getUserDreams();
@@ -12,28 +14,22 @@ export default async function DreamsPage() {
     rate: draemDto.rating,
     date: draemDto.dreamDate,
     imageSrc: draemDto.imageUrl,
-  }))
+  }));
 
   return (
-    <div className={styles.page}>
-      <div className={styles.main}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Все сны</h1>
-          <Button asChild>
-            <Link
-              href="/dream/new"
-              className={styles.createLink}
-            >
-              <PlusIcon />
-              <span>Добавить</span>
-            </Link>
-          </Button>
-        </header>
+    <Fragment>
+      <PageHeader title="Все сны">
+        <Button asChild>
+          <Link href="/dream/new" className={styles.createLink}>
+            <PlusIcon size={20} />
+            <span>Добавить</span>
+          </Link>
+        </Button>
+      </PageHeader>
 
-        <section className={styles.dreamsListContainer}>
-          <DreamList items={dreamsItems} />
-        </section>
-      </div>
-    </div>
+      <section className={styles.dreamsListContainer}>
+        <DreamList items={dreamsItems} />
+      </section>
+    </Fragment>
   );
 }

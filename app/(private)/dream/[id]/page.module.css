@@ -10,13 +10,48 @@
 
 .controls {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.dreamImage {
-  max-height: 600px;
+.imageContainer {
+  position: relative;
   margin-block-end: 1rem;
+}
+
+.imageSkeleton {
+  min-height: 24rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, currentColor 5%, transparent) 25%,
+    color-mix(in srgb, currentColor 12%, transparent) 50%,
+    color-mix(in srgb, currentColor 5%, transparent) 75%
+  );
+  background-size: 200% 100%;
+  animation: imageSkeletonPulse 1.5s infinite linear;
+}
+
+.dreamImage {
+  display: block;
+  max-width: 100%;
+  max-height: 600px;
+  opacity: 0;
+  transition: opacity 200ms ease-in;
+}
+
+.dreamImage[data-loaded='true'] {
+  opacity: 1;
+}
+
+@keyframes imageSkeletonPulse {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
 }
 
 .date {

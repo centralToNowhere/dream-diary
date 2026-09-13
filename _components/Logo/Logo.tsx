@@ -3,22 +3,22 @@
 import Image from 'next/image';
 import LogoImageLight from '@/public/dream-diary-logo-purple.png';
 import LogoImageDark from '@/public/dream-diary-logo-contrast.png';
-import { useTheme } from '@/hooks/useTheme';
+import { useTheme } from '@/lib/shared/theme';
 
 type LogoProps = {
-  width?: React.CSSProperties['width']
-  height?: React.CSSProperties['height']
-}
+  width?: React.CSSProperties['width'];
+  height?: React.CSSProperties['height'];
+};
 
 const containerStyles = {
-  display: 'flex'
-}
+  display: 'flex',
+};
 
 const Logo = ({ width, height }: LogoProps) => {
   let Logo;
   const theme = useTheme();
 
-  if (theme.value === 'dark') {
+  if (theme === 'dark') {
     Logo = LogoImageLight;
   } else {
     Logo = LogoImageDark;
@@ -31,14 +31,13 @@ const Logo = ({ width, height }: LogoProps) => {
           width,
           height,
           borderRadius: '12px',
-          flexShrink: 0
+          flexShrink: 0,
         }}
         src={Logo}
         alt="Dream Diary"
       />
     </div>
-  )
-}
+  );
+};
 
-export default Logo
-
+export default Logo;

@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Button } from "@/_components/ui"
-import { notFound } from "next/navigation";
-import getUserDreamById from "@/features/dreams/getUserDreamById"
+import Link from 'next/link';
+import { Button } from '@/_components/ui';
+import { notFound } from 'next/navigation';
+import getUserDreamById from '@/lib/features/dreams/getUserDreamById';
+import DreamImage from './_components/DreamImage';
 
-import styles from "./page.module.css";
-import Image from "next/image";
+import styles from './page.module.css';
 
 type DreamPageProps = {
   params: Promise<{
@@ -33,24 +33,19 @@ export default async function DreamPage({ params }: DreamPageProps) {
           </div>
 
           {dream.imageUrl && (
-            <img
+            <DreamImage
+              key={dream.imageUrl}
               src={dream.imageUrl}
-              alt=""
-              className={styles.dreamImage}
+              alt={`Иллюстрация сна «${dream.title}»`}
             />
           )}
 
-          <p className={styles.description}>
-            {dream.description}
-          </p>
+          <p className={styles.description}>{dream.description}</p>
         </article>
 
         <div className={styles.controls}>
           <Button asChild>
-            <Link
-              href={`/dream/${id}/edit`}
-              className={styles.editLink}
-            >
+            <Link href={`/dream/${id}/edit`} className={styles.editLink}>
               Редактировать
             </Link>
           </Button>

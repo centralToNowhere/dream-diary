@@ -1,8 +1,8 @@
-import { notFound } from "next/navigation";
-import DreamForm from "@/app/(private)/dream/_components/DreamForm";
-import getUserDreamById from "@/features/dreams/getUserDreamById";
-import styles from "./page.module.css";
-import { editDreamAction } from "./actions";
+import { notFound } from 'next/navigation';
+import DreamForm from '@/app/(private)/dream/_components/DreamForm';
+import getUserDreamById from '@/lib/features/dreams/getUserDreamById';
+import styles from './page.module.css';
+import { editDreamAction } from '../../../../../lib/features/dreams/actions/editDreamActions';
 
 type EditDreamPageProps = {
   params: Promise<{ id: string }>;
@@ -22,7 +22,6 @@ export default async function EditDreamPage({ params }: EditDreamPageProps) {
     <div className={styles.page}>
       <div className={styles.main}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Редактирование</p>
           <h1 className={styles.title}>Редактировать сон</h1>
         </header>
 

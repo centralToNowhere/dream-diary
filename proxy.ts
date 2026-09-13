@@ -1,18 +1,18 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { parseJWT } from "@/features/auth/jwt"
-import { PUBLIC_ROUTES, SESSION_EXPIRED_URL } from './app/routes';
-import { getSessionByToken } from './features/auth/getUserProfile';
-import { refreshByToken } from './features/auth/refresh';
-import cookiesUtils from './features/auth/cookies/cookiesUtils';
+import { parseJWT } from '@/lib/shared/auth/jwt';
+import { PUBLIC_ROUTES, SESSION_EXPIRED_URL } from './lib/shared/routes';
+import { getSessionByToken } from '@/lib/entities/users/getUserProfile';
+import { refreshByToken } from '@/lib/features/auth/refresh';
+import cookiesUtils from '@/lib/shared/auth/cookies/cookiesUtils';
 import {
-  serializeUserData,
+  serializeData,
   USER_DATA_HEADER,
-} from './features/auth/userDataHeader';
-import type { UserProfile } from './entities/users/types';
+} from '@/lib/shared/auth/userDataHeader';
+import type { UserProfile } from '@/lib/entities/users/types';
 
 const publicRoutes = new Set(PUBLIC_ROUTES);
-const SERVER_ACTION_HEADER = "next-action";
-type AuthMode = "optional" | "required";
+const SERVER_ACTION_HEADER = 'next-action';
+type AuthMode = 'optional' | 'required';
 
 const continueRequest = (request: NextRequest, user?: UserProfile) => {
   const requestHeaders = new Headers(request.headers);
@@ -21,7 +21,7 @@ const continueRequest = (request: NextRequest, user?: UserProfile) => {
   requestHeaders.delete(USER_DATA_HEADER);
 
   if (user) {
-    requestHeaders.set(USER_DATA_HEADER, serializeUserData(user));
+    requestHeaders.set(USER_DATA_HEADER, serializeData(user));
   }
 
   return NextResponse.next({
@@ -38,31 +38,27 @@ const sessionExpiredResponse = async (request: NextRequest) => {
   );
 
   await cookiesUtils.removeJWT(response.cookies);
-  await cookiesUtils.removeRefreshToken(response.cookies)
-
-  return response;
-}
-
-const continueAsGuest = async (request: NextRequest) => {
-  await cookiesUtils.removeJWT(request.cookies);
-  await cookiesUtils.removeRefreshToken(request.cookies)
-
-  const response = continueRequest(request);
-
-  await cookiesUtils.removeJWT(response.cookies);
-  await cookiesUtils.removeRefreshToken(response.cookies)
+  await cookiesUtils.removeRefreshToken(response.cookies);
 
   return response;
 };
 
-const authenticationFailedResponse = (
-  request: NextRequest,
-  mode: AuthMode,
-) => (
-  mode === "optional"
+const continueAsGuest = async (request: NextRequest) => {
+  await cookiesUtils.removeJWT(request.cookies);
+  await cookiesUtils.removeRefreshToken(request.cookies);
+
+  const response = continueRequest(request);
+
+  await cookiesUtils.removeJWT(response.cookies);
+  await cookiesUtils.removeRefreshToken(response.cookies);
+
+  return response;
+};
+
+const authenticationFailedResponse = (request: NextRequest, mode: AuthMode) =>
+  mode === 'optional'
     ? continueAsGuest(request)
-    : sessionExpiredResponse(request)
-);
+    : sessionExpiredResponse(request);
 
 const refresh = async (
   request: NextRequest,
@@ -81,20 +77,26 @@ const refresh = async (
     return authenticationFailedResponse(request, mode);
   }
 
-  await cookiesUtils.setJWT({
-    token: refreshedSession.jwt,
-    expires: refreshedSession.jwtExpires,
-  }, request.cookies);
+  await cookiesUtils.setJWT(
+    {
+      token: refreshedSession.jwt,
+      expires: refreshedSession.jwtExpires,
+    },
+    request.cookies,
+  );
 
   const response = continueRequest(request, user);
 
-  await cookiesUtils.setJWT({
-    token: refreshedSession.jwt,
-    expires: refreshedSession.jwtExpires,
-  }, response.cookies);
+  await cookiesUtils.setJWT(
+    {
+      token: refreshedSession.jwt,
+      expires: refreshedSession.jwtExpires,
+    },
+    response.cookies,
+  );
 
   return response;
-}
+};
 
 const sessionCheck = async (
   request: NextRequest,
@@ -119,19 +121,19 @@ const sessionCheck = async (
     return authenticationFailedResponse(request, mode);
   }
 
-  if (mode === "optional") {
+  if (mode === 'optional') {
     return continueRequest(request);
   }
 
-  return NextResponse.redirect(new URL("/login", request.url), 303);
-}
+  return NextResponse.redirect(new URL('/login', request.url), 303);
+};
 
 export async function proxy(request: NextRequest) {
   const { nextUrl, method } = request;
-  const isApiRequest = nextUrl.pathname.startsWith("/api/");
-  const isPageRequest = method === "GET" || method === "HEAD";
-  const isServerActionRequest = method === "POST"
-    && request.headers.has(SERVER_ACTION_HEADER);
+  const isApiRequest = nextUrl.pathname.startsWith('/api/');
+  const isPageRequest = method === 'GET' || method === 'HEAD';
+  const isServerActionRequest =
+    method === 'POST' && request.headers.has(SERVER_ACTION_HEADER);
 
   // API использует loginRequiredApi и собственный 401 -> refresh -> retry flow.
   if (isApiRequest || (!isPageRequest && !isServerActionRequest)) {
@@ -139,21 +141,21 @@ export async function proxy(request: NextRequest) {
   }
 
   const mode: AuthMode = publicRoutes.has(nextUrl.pathname)
-    ? "optional"
-    : "required";
+    ? 'optional'
+    : 'required';
 
   try {
     return await sessionCheck(request, mode);
   } catch (error: unknown) {
-    console.error("[proxy] request failed", {
+    console.error('[proxy] request failed', {
       method: method,
       pathname: nextUrl.pathname,
       error,
     });
 
     const errorUrl = nextUrl.clone();
-    errorUrl.pathname = "/500.html";
-    errorUrl.search = "";
+    errorUrl.pathname = '/500.html';
+    errorUrl.search = '';
 
     return NextResponse.rewrite(errorUrl);
   }
@@ -161,6 +163,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
   ],
 };

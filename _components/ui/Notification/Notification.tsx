@@ -1,5 +1,5 @@
-import cn from "clsx";
-import styles from "./Notification.module.css";
+import cn from 'clsx';
+import styles from './Notification.module.css';
 
 const notificationVariantStyleMap = {
   danger: styles.danger,
@@ -9,14 +9,13 @@ const notificationVariantStyleMap = {
 
 export type NotificationVariants = keyof typeof notificationVariantStyleMap;
 
-export interface NotificationProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface NotificationProps extends React.HTMLAttributes<HTMLDivElement> {
   variant: NotificationVariants;
 }
 
 const Notification = ({
   className,
-  role = "status",
+  role = 'status',
   variant,
   ...props
 }: NotificationProps) => (
@@ -31,6 +30,6 @@ const Notification = ({
   />
 );
 
-Notification.displayName = "Notification";
+Notification.displayName = 'Notification';
 
 export { Notification };

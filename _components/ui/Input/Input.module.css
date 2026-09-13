@@ -10,6 +10,10 @@
     opacity 150ms ease;
 }
 
+:global(.theme-light) .input {
+  box-shadow: 2px 2px 2px var(--box-shadow);
+}
+
 .input::placeholder {
   color: var(--text-faded);
 }
@@ -18,7 +22,7 @@
   border-color: var(--accent);
 }
 
-.input[aria-invalid="true"] {
+.input[aria-invalid='true'] {
   border-color: var(--danger);
 }
 

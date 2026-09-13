@@ -1,8 +1,11 @@
-import getCurrentUser from "@/features/auth/getUserProfile";
-import HeaderProfile from "./HeaderProfile";
+'use client';
 
-export default async function CurrentUser() {
-  const profile = await getCurrentUser();
+import { observer } from 'mobx-react-lite';
+import { useUserProfileStore } from '@/lib/entities/users/profile';
+import HeaderProfile from './HeaderProfile';
+
+const CurrentUser = observer(function CurrentUser() {
+  const { profile } = useUserProfileStore();
 
   if (!profile) {
     return null;
@@ -15,4 +18,6 @@ export default async function CurrentUser() {
       avatarUrl={profile.avatarUrl ?? null}
     />
   );
-}
+});
+
+export default CurrentUser;

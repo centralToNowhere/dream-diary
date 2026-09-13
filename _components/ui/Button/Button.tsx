@@ -1,5 +1,5 @@
-import styles from './Button.module.css'
-import { Slot } from "radix-ui";
+import styles from './Button.module.css';
+import { Slot } from 'radix-ui';
 import cn from 'clsx';
 
 const buttonVariantStyleMap = {
@@ -7,37 +7,44 @@ const buttonVariantStyleMap = {
   secondary: cn(styles.variant, styles.secondary),
   outline: cn(styles.variant, styles.outline),
   danger: cn(styles.variant, styles.danger),
-}
+};
 
 const buttonSizeStyleMap = {
   default: cn(styles.size, styles.default),
   sm: cn(styles.size, styles.sm),
-  lg: cn(styles.size, styles.lg)
-}
+  lg: cn(styles.size, styles.lg),
+};
 
 type ButtonVariants = keyof typeof buttonVariantStyleMap;
 type ButtonSizes = keyof typeof buttonSizeStyleMap;
 
 type ButtonVariant = {
-  variant?: ButtonVariants
-}
+  variant?: ButtonVariants;
+};
 
 type ButtonSize = {
-  size?: ButtonSizes
-}
+  size?: ButtonSizes;
+};
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  ButtonVariant,
-  ButtonSize {
-  asChild?: boolean
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    ButtonVariant,
+    ButtonSize {
+  asChild?: boolean;
 }
 
-const Button = ({ asChild, className, variant, size, ...props }: ButtonProps) => {
-  const Comp = asChild ? Slot.Root : "button";
+const Button = ({
+  asChild,
+  className,
+  variant,
+  size,
+  ...props
+}: ButtonProps) => {
+  const Comp = asChild ? Slot.Root : 'button';
 
-  variant = variant ? variant : 'default'
-  size = size ? size : 'default'
+  variant = variant ? variant : 'default';
+  size = size ? size : 'default';
 
   return (
     <Comp
@@ -45,13 +52,13 @@ const Button = ({ asChild, className, variant, size, ...props }: ButtonProps) =>
         styles.button,
         buttonVariantStyleMap[variant],
         buttonSizeStyleMap[size],
-        className
+        className,
       )}
       {...props}
     />
-  )
-}
+  );
+};
 
-Button.displayName = "Button"
+Button.displayName = 'Button';
 
-export { Button, type ButtonVariants }
+export { Button, type ButtonVariants };

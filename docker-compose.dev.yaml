@@ -7,16 +7,16 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "${POSTGRES_HOST_PORT}:${POSTGRES_PORT:-5432}"
+      - '${POSTGRES_HOST_PORT}:${POSTGRES_PORT:-5432}'
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./infrastructure/db/init/001_init.sql:/docker-entrypoint-initdb.d/001_init.sql:ro
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-user} -d postgres" ]
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-user} -d postgres']
       interval: 10s
       timeout: 5s
       retries: 5
-    command: [ "postgres", "-c", "log_statement=all", "-c", "log_duration=on" ]
+    command: ['postgres', '-c', 'log_statement=all', '-c', 'log_duration=on']
 
   migrate:
     image: ghcr.io/amacneil/dbmate:latest
@@ -38,12 +38,12 @@ services:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     ports:
-      - "${MINIO_API_HOST_PORT:-9000}:9000"
-      - "${MINIO_CONSOLE_HOST_PORT:-9001}:9001"
+      - '${MINIO_API_HOST_PORT:-9000}:9000'
+      - '${MINIO_CONSOLE_HOST_PORT:-9001}:9001'
     volumes:
       - minio_data:/data
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
       interval: 10s
       timeout: 5s
       retries: 5

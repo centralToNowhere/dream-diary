@@ -1,8 +1,8 @@
-import { Suspense } from "react";
-import styles from "./Header.module.css";
+import { Suspense } from 'react';
+import styles from './Header.module.css';
 
-import CurrentUser from "./_components/CurrentUser";
-import HeaderMenu from "./_components/HeaderMenu";
+import CurrentUser from './_components/CurrentUser';
+import HeaderMenu from './_components/HeaderMenu';
 
 export default function Header() {
   return (

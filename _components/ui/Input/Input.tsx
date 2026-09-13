@@ -1,5 +1,5 @@
-import cn from "clsx";
-import styles from "./Input.module.css";
+import cn from 'clsx';
+import styles from './Input.module.css';
 
 const inputSizeStyleMap = {
   default: styles.default,
@@ -9,18 +9,21 @@ const inputSizeStyleMap = {
 
 type InputSizes = keyof typeof inputSizeStyleMap;
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   sizeVariant?: InputSizes;
 }
 
-const Input = ({ className, sizeVariant = "default", ...props }: InputProps) => (
+const Input = ({
+  className,
+  sizeVariant = 'default',
+  ...props
+}: InputProps) => (
   <input
     className={cn(styles.input, inputSizeStyleMap[sizeVariant], className)}
     {...props}
   />
 );
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export { Input, type InputSizes };

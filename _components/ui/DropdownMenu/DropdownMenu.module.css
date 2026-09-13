@@ -15,19 +15,19 @@
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 
-  &[data-side="top"] {
+  &[data-side='top'] {
     animation-name: slideDownAndFade;
   }
 
-  &[data-side="right"] {
+  &[data-side='right'] {
     animation-name: slideLeftAndFade;
   }
 
-  &[data-side="bottom"] {
+  &[data-side='bottom'] {
     animation-name: slideUpAndFade;
   }
 
-  &[data-side="left"] {
+  &[data-side='left'] {
     animation-name: slideRightAndFade;
   }
 }
@@ -79,11 +79,10 @@
 }
 
 .subTrigger {
-  &[data-state="open"]:not([data-highlighted], [data-disabled]) {
+  &[data-state='open']:not([data-highlighted], [data-disabled]) {
     background-color: var(--violet-2);
   }
 }
-
 
 @keyframes slideUpAndFade {
   from {

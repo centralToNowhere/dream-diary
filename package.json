@@ -12,14 +12,22 @@
     "db:new": "docker compose run --rm migrate new",
     "db:migrate": "docker compose run --rm migrate migrate",
     "db:rollback": "docker compose run --rm migrate rollback",
-    "db:status": "docker compose run --rm migrate status"
+    "db:status": "docker compose run --rm migrate status",
+    "db:dev:new": "docker compose -f docker-compose.dev.yaml run --rm migrate new",
+    "db:dev:migrate": "docker compose -f docker-compose.dev.yaml run --rm migrate migrate",
+    "db:dev:rollback": "docker compose -f docker-compose.dev.yaml run --rm migrate rollback",
+    "db:dev:status": "docker compose -f docker-compose.dev.yaml run --rm migrate status",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1111.0",
     "@hookform/resolvers": "^5.8.0",
     "argon2": "^0.44.0",
+    "axios": "^1.20.0",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
+    "mobx": "^7.0.3",
+    "mobx-react-lite": "^5.0.3",
     "next": "16.1.6",
     "postgres": "^3.4.9",
     "radix-ui": "^1.6.7",
@@ -40,6 +48,7 @@
     "eslint-config-next": "16.1.6",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
+    "prettier": "^3.9.6",
     "ts-node": "^10.9.2",
     "typescript": "^5"
   }

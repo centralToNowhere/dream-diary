@@ -1,7 +1,7 @@
-import login from "@/features/auth/login";
-import cookiesUtils from "@/features/auth/cookies/cookiesUtils";
-import { LoginInputSchema } from "@/entities/users/types";
-import { NextResponse } from "next/server";
+import login from '@/lib/features/auth/login';
+import cookiesUtils from '@/lib/shared/auth/cookies/cookiesUtils';
+import { LoginInputSchema } from '@/lib/entities/users/types';
+import { NextResponse } from 'next/server';
 
 export const POST = async (request: Request) => {
   let body: unknown;
@@ -10,7 +10,7 @@ export const POST = async (request: Request) => {
     body = await request.json();
   } catch {
     return NextResponse.json(
-      { error: "Некорректный формат запроса" },
+      { error: 'Некорректный формат запроса' },
       { status: 400 },
     );
   }
@@ -22,7 +22,7 @@ export const POST = async (request: Request) => {
       {
         error:
           validationResult.error.issues[0]?.message ??
-          "Проверьте введённые данные",
+          'Проверьте введённые данные',
       },
       { status: 400 },
     );
@@ -32,19 +32,19 @@ export const POST = async (request: Request) => {
 
   if (!user) {
     return NextResponse.json(
-      { error: "Неверный email или пароль" },
+      { error: 'Неверный email или пароль' },
       { status: 401 },
     );
   }
 
   await cookiesUtils.setJWT({
     token: user.jwt,
-    expires: user.jwtExpires
+    expires: user.jwtExpires,
   });
 
   await cookiesUtils.setRefreshToken({
     token: user.refreshToken,
-    expires: user.refreshTokenExpires
+    expires: user.refreshTokenExpires,
   });
 
   return NextResponse.json({ success: true });

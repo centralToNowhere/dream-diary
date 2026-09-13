@@ -4,9 +4,11 @@
   border: 1px solid var(--notification-color);
   border-radius: var(--border-radius);
   margin: 0;
-  background: color-mix(in srgb,
-      var(--notification-color) 12%,
-      var(--background));
+  background: color-mix(
+    in srgb,
+    var(--notification-color) 12%,
+    var(--background)
+  );
   padding: 0.75rem 1rem;
   color: var(--text-primary);
   font-size: var(--fs-sm);

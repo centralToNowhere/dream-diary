@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { DreamItem } from './types'
+import { DreamItem } from './types';
 import { StarRating } from '@/_components/StarRating';
-import styles from './DreamList.module.css'
+import styles from './DreamList.module.css';
 import { useRef } from 'react';
-import { useParalax } from './hooks';
-import { useThrottle } from '@/hooks';
+import { useParalax } from '@/lib/shared/hooks';
+import { useThrottle } from '@/lib/shared/hooks';
 
 interface DreamItemProps {
-  data: DreamItem
+  data: DreamItem;
 }
 
 const paralaxConfig = { keyX: '--bg-x', keyY: '--bg-y' };
@@ -19,18 +19,23 @@ const DreamItemComponent = ({ data }: DreamItemProps) => {
   const handleParalaxThrottled = useThrottle(handleParalax, 100, true);
 
   return (
-    <article onMouseMove={handleParalaxThrottled} ref={cardRef} className={styles.item} style={{
-      '--bg-image': `url(${data.imageSrc})`
-    } as React.CSSProperties}>
+    <article
+      onMouseMove={handleParalaxThrottled}
+      ref={cardRef}
+      className={styles.item}
+      style={
+        {
+          '--bg-image': `url(${data.imageSrc})`,
+        } as React.CSSProperties
+      }
+    >
       <div className={styles.itemHeading}>
-        <h2 className={styles.itemTitle}>
-          {data.title}
-        </h2>
+        <h2 className={styles.itemTitle}>{data.title}</h2>
 
         <div className={styles.metaContainer}>
           <span className={styles.itemDate}>
-            {new Intl.DateTimeFormat("ru-RU", {
-              dateStyle: "short",
+            {new Intl.DateTimeFormat('ru-RU', {
+              dateStyle: 'short',
             }).format(new Date(data.date))}
           </span>
 
@@ -39,12 +44,10 @@ const DreamItemComponent = ({ data }: DreamItemProps) => {
       </div>
 
       <div className={styles.contentContainer}>
-        <p className={styles.itemContent}>
-          {data.description}
-        </p>
+        <p className={styles.itemContent}>{data.description}</p>
       </div>
     </article>
-  )
-}
+  );
+};
 
 export default DreamItemComponent;

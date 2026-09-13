@@ -6,13 +6,9 @@
   min-width: 0;
 
   .headerNavItem {
-    border: 2px outset var(--border-button);
-    padding: 0.5rem;
+    padding-inline: 1rem;
     border-radius: 12px;
-
-    &:hover {
-      border: 2px inset var(--border-button);
-    }
+    max-width: auto;
   }
 }
 
@@ -47,10 +43,6 @@
   font-weight: 500;
   text-decoration: none;
   color: var(--text-primary);
-
-  &:active {
-    border-style: inset;
-  }
 
   &[data-highlighted] {
     border-radius: 0;

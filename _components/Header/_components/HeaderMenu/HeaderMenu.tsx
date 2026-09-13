@@ -3,31 +3,42 @@
 import styles from './HeaderMenu.module.css';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import BackButton from "@/_components/Header/_components/BackButton";
-import Logo from "@/_components/Logo";
-import { useDevice } from '@/hooks';
-import DropDownMenu, { DropDownMenuItem } from '@/_components/ui/DropdownMenu'
+import BackButton from '@/_components/Header/_components/BackButton';
+import { Button } from '@/_components/ui';
+import Logo from '@/_components/Logo';
+import { useDevice } from '@/lib/shared/device';
+import DropDownMenu, { DropDownMenuItem } from '@/_components/ui/DropdownMenu';
 import { Fragment } from 'react/jsx-runtime';
-import ThemeDarkLightToggle from "@/_components/ThemeToggle";
+import ThemeDarkLightToggle from '@/lib/features/users/components/ThemeToggle';
 
 const items: DropDownMenuItem[] = [
   {
-    id: "main",
-    node: <Link className={styles.headerNavItem} href="/">
-      <span>Главная</span>
-    </Link>,
+    id: 'main',
+    node: (
+      <Button asChild>
+        <Link className={styles.headerNavItem} href="/">
+          <span>Главная</span>
+        </Link>
+      </Button>
+    ),
   },
   {
-    id: "diary",
-    node: <Link key="diary" className={styles.headerNavItem} href="/dreams">
-      <span>Дневник</span>
-    </Link>
-  }
-]
+    id: 'diary',
+    node: (
+      <Button asChild>
+        <Link key="diary" className={styles.headerNavItem} href="/dreams">
+          <span>Дневник</span>
+        </Link>
+      </Button>
+    ),
+  },
+];
 
-const LogoItem = () => <Link href="/" className={styles.logoItem}>
-  <Logo width={"36px"} height={"36px"} />
-</Link>;
+const LogoItem = () => (
+  <Link href="/" className={styles.logoItem}>
+    <Logo width={'36px'} height={'36px'} />
+  </Link>
+);
 
 const HeaderMenu = () => {
   const device = useDevice();
@@ -60,12 +71,10 @@ const HeaderMenu = () => {
                       trigger={item.node}
                       items={item.children}
                     />
-                  )
+                  );
                 }
 
-                return <Fragment key={item.id}>
-                  {item.node}
-                </Fragment>;
+                return <Fragment key={item.id}>{item.node}</Fragment>;
               })}
             </div>
 
@@ -74,9 +83,9 @@ const HeaderMenu = () => {
         </>
       )}
     </nav>
-  )
-}
+  );
+};
 
 HeaderMenu.displayName = 'HeaderMenu';
 
-export default HeaderMenu
+export default HeaderMenu;

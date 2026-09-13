@@ -1,13 +1,14 @@
 .button {
   cursor: pointer;
   flex-shrink: 0;
-  border: 1px outset var(--border-button);
   border-radius: 12px;
   background-color: var(--secondary);
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--text-primary);
+  box-shadow: 2px 2px 2px var(--box-shadow);
+  border: 1px solid var(--border-button);
 
   svg {
     pointer-events: none;
@@ -16,18 +17,16 @@
   }
 
   &:hover {
-    border: 1px inset var(--border-button);
-    color: color-mix(in srgb, var(--accent) 12%, var(--text-primary) 50%)
+    color: color-mix(in srgb, var(--accent) 12%, var(--text-primary) 50%);
+    box-shadow: 1px 1px 0 var(--box-shadow);
+  }
+
+  &:active {
+    box-shadow: none;
   }
 }
 
 .variant {
-  &.default {
-    &:hover {
-      text-shadow: -1px -1px 1px #000;
-    }
-  }
-
   &.secondary {
     background-color: var(--tertiary);
   }
@@ -38,7 +37,7 @@
 
     &:hover {
       text-decoration: underline;
-      color: color-mix(in srgb, var(--accent) 52%, var(--background))
+      color: color-mix(in srgb, var(--accent) 52%, var(--background));
     }
   }
 
@@ -52,6 +51,7 @@
     font-size: var(--fs-md);
     padding-block: 0.5rem;
     padding-inline: 0.75rem;
+    min-height: 2.375rem;
   }
 
   &.sm {

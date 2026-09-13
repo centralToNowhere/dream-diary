@@ -1,0 +1,13 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.hint {
+  margin: 0.5rem 0 0;
+  color: var(--text-faded);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}

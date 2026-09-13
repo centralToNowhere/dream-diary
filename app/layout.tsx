@@ -1,24 +1,25 @@
-import type { Metadata } from "next";
-import { Roboto, Roboto_Mono } from "next/font/google";
-import "./globals.css";
-import { DeviceProvider, ThemeProvider } from "@/contexts";
-import cn from "clsx";
-import styles from "./layout.module.css";
-import Header from "../_components/Header/Header";
+import type { Metadata } from 'next';
+import { Roboto, Roboto_Mono } from 'next/font/google';
+import './globals.css';
+import { DeviceProvider, ThemeProvider } from '@/lib/providers';
+import cn from 'clsx';
+import styles from './layout.module.css';
+import Header from '../_components/Header/Header';
+import StoreSetup from './StoreSetup';
 
 const robotoFont = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin", "cyrillic"],
+  variable: '--font-roboto',
+  subsets: ['latin', 'cyrillic'],
 });
 
 const robotoMonoFont = Roboto_Mono({
-  variable: "--font-roboto-mono",
-  subsets: ["latin", "cyrillic"],
+  variable: '--font-roboto-mono',
+  subsets: ['latin', 'cyrillic'],
 });
 
 export const metadata: Metadata = {
-  title: "Dream diary",
-  description: "Dream diary",
+  title: 'Dream diary',
+  description: 'Dream diary',
 };
 
 export default function RootLayout({
@@ -28,22 +29,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ThemeProvider>
-        <DeviceProvider>
-          <body
-            className={cn([
-              robotoFont.variable,
-              robotoMonoFont.variable,
-              styles.body
-            ])}
-          >
-            <Header />
-            <main className={styles.main}>
-              {children}
-            </main>
-          </body>
-        </DeviceProvider>
-      </ThemeProvider>
+      <body
+        className={cn([
+          robotoFont.variable,
+          robotoMonoFont.variable,
+          styles.body,
+        ])}
+      >
+        <StoreSetup>
+          <ThemeProvider>
+            <DeviceProvider>
+              <Header />
+              <main className={styles.main}>{children}</main>
+            </DeviceProvider>
+          </ThemeProvider>
+        </StoreSetup>
+      </body>
     </html>
   );
 }

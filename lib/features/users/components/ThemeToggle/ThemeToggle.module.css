@@ -1,0 +1,9 @@
+.button {
+  background-color: var(--secondary);
+  border-radius: 12px;
+  height: 3rem;
+
+  svg {
+    width: 2rem;
+  }
+}

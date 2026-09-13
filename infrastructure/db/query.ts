@@ -1,9 +1,6 @@
-import type { Sql } from "postgres";
-import getDbConnection from "./sql";
-import {
-  DBUnavailableError,
-  isConnectionError,
-} from "./errors";
+import type { Sql } from 'postgres';
+import getDbConnection from './sql';
+import { DBUnavailableError, isConnectionError } from './errors';
 
 export default async function query<T>(
   operation: (sql: Sql) => PromiseLike<T>,

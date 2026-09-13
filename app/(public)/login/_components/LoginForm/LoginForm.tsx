@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { SubmitEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import { SubmitEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import loginRequest, {
   LoginRequestError,
-} from "@/features/auth/loginRequest";
-import { Button, Form, Input, Label, Notification } from "@/_components/ui";
+} from '@/lib/features/auth/loginRequest';
+import { Button, Form, Input, Label, Notification } from '@/_components/ui';
 import styles from './LoginForm.module.css';
 
 type LoginFormProps = {
@@ -26,17 +26,17 @@ const LoginForm = ({ showSessionExpiredWarning = false }: LoginFormProps) => {
 
     try {
       await loginRequest({
-        email: String(formData.get("email") ?? ""),
-        password: String(formData.get("password") ?? ""),
+        email: String(formData.get('email') ?? ''),
+        password: String(formData.get('password') ?? ''),
       });
 
-      router.push("/dreams");
+      router.push('/dreams');
       router.refresh();
     } catch (requestError) {
       setError(
         requestError instanceof LoginRequestError
           ? requestError.message
-          : "Не удалось войти. Попробуйте ещё раз",
+          : 'Не удалось войти. Попробуйте ещё раз',
       );
     } finally {
       setIsPending(false);
@@ -54,9 +54,7 @@ const LoginForm = ({ showSessionExpiredWarning = false }: LoginFormProps) => {
       ) : null}
 
       <Form.Field>
-        <Label htmlFor="email">
-          Email
-        </Label>
+        <Label htmlFor="email">Email</Label>
         <Input
           id="email"
           name="email"
@@ -67,15 +65,8 @@ const LoginForm = ({ showSessionExpiredWarning = false }: LoginFormProps) => {
       </Form.Field>
 
       <Form.Field>
-        <Label htmlFor="password">
-          Пароль
-        </Label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          required
-        />
+        <Label htmlFor="password">Пароль</Label>
+        <Input id="password" name="password" type="password" required />
       </Form.Field>
 
       {error ? (
@@ -93,11 +84,11 @@ const LoginForm = ({ showSessionExpiredWarning = false }: LoginFormProps) => {
           disabled={isPending}
           className={styles.submitButton}
         >
-          {isPending ? "Вход…" : "Войти"}
+          {isPending ? 'Вход…' : 'Войти'}
         </Button>
       </Form.Field>
     </Form>
-  )
-}
+  );
+};
 
 export default LoginForm;

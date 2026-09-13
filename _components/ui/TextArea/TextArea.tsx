@@ -1,5 +1,5 @@
-import cn from "clsx";
-import styles from "./TextArea.module.css";
+import cn from 'clsx';
+import styles from './TextArea.module.css';
 
 const textAreaSizeStyleMap = {
   default: styles.default,
@@ -9,22 +9,25 @@ const textAreaSizeStyleMap = {
 
 type TextAreaSizes = keyof typeof textAreaSizeStyleMap;
 
-export interface TextAreaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   sizeVariant?: TextAreaSizes;
 }
 
 const TextArea = ({
   className,
-  sizeVariant = "default",
+  sizeVariant = 'default',
   ...props
 }: TextAreaProps) => (
   <textarea
-    className={cn(styles.textArea, textAreaSizeStyleMap[sizeVariant], className)}
+    className={cn(
+      styles.textArea,
+      textAreaSizeStyleMap[sizeVariant],
+      className,
+    )}
     {...props}
   />
 );
 
-TextArea.displayName = "TextArea";
+TextArea.displayName = 'TextArea';
 
 export { TextArea, type TextAreaSizes };

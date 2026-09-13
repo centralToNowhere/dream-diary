@@ -1,8 +1,8 @@
-import styles from "./StarRating.module.css"
+import styles from './StarRating.module.css';
 
 interface StarRatingProps {
-  value: number
-  maxRate: number
+  value: number;
+  maxRate: number;
 }
 
 const StarRating = ({ value, maxRate }: StarRatingProps) => {
@@ -15,19 +15,19 @@ const StarRating = ({ value, maxRate }: StarRatingProps) => {
     <div className={styles.container}>
       <div
         className={styles.outer}
-        style={{
-          '--star-rating': `${(value / maxRate) * 100}%`
-        } as React.CSSProperties}
+        style={
+          {
+            '--star-rating': `${(value / maxRate) * 100}%`,
+          } as React.CSSProperties
+        }
       >
         ★★★★★
-        <div className={styles.inner}>
-          ★★★★★
-        </div>
+        <div className={styles.inner}>★★★★★</div>
       </div>
       <span className={styles.value}>{`${value} / ${maxRate}`}</span>
     </div>
-  )
-}
+  );
+};
 
 StarRating.displayName = 'StarRating';
 

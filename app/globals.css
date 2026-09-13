@@ -4,6 +4,7 @@
   --light-grey-2: #b2b4b2;
   --dark-grey: #1f1f1f;
   --dark-grey-2: #222;
+  --dark-grey-3: #131111;
   --violet: #353177;
   --violet-2: #18154d;
   --lavander: #9e86ca;
@@ -27,6 +28,8 @@
   --header-height: 70px;
 
   --shadow: var(--black);
+  --box-shadow: var(--dark-grey-3);
+  --border-button: var(--dark-grey-2);
   --danger: var(--red);
   --warn: var(--sand);
   --success: var(--green);
@@ -50,13 +53,11 @@
     --background: var(--dark-grey);
     --foreground: var(--light-grey);
     --border: var(--light-grey-2);
-    --border-button: var(--dark-grey-2);
 
     --primary: var(--light-grey);
     --secondary: var(--violet);
     --tertiary: var(--dark-grey);
     --accent: var(--light-blue-2);
-
 
     --text-primary: var(--light-grey);
     --text-secondary: var(--dark-grey);
@@ -66,7 +67,6 @@
     --background: var(--light-grey);
     --foreground: var(--dark-grey);
     --border: var(--dark-grey-2);
-    --border-button: var(--light-grey-2);
 
     --primary: var(--dark-grey);
     --secondary: var(--lavander);
@@ -103,8 +103,6 @@ body {
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
-
-
 }
 
 button,
@@ -139,7 +137,6 @@ a {
   }
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--dark-grey);
@@ -151,7 +148,6 @@ a {
     --secondary: var(--violet);
     --tertiary: var(--dark-grey);
     --accent: var(--light-blue-2);
-
 
     --text-primary: var(--light-grey);
     --text-secondary: var(--dark-grey);
@@ -185,9 +181,8 @@ a {
 /* md */
 @media (768px < width <=992px) {
   main {
-    padding-inline: var(--screen-factor-md)
+    padding-inline: var(--screen-factor-md);
   }
-
 
   :root {
     --pd: var(--screen-factor-md);

@@ -1,22 +1,23 @@
-.headerProfileButtonContent {
+button.headerProfileButtonContent {
   padding-inline: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px outset var(--border-button);
+  box-shadow: 2px 2px 2px var(--box-shadow);
   border-radius: 12px;
   gap: 0.5rem;
   height: 100%;
   width: 220px;
 
   &:hover {
-    border: 2px inset var(--border-button);
+    box-shadow: 1px 1px 0 var(--box-shadow);
   }
 
   .headerProfileButtonData {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    align-items: flex-start;
   }
 
   .headerProfileAvatarContainer {

@@ -1,15 +1,11 @@
-"use client";
+'use client';
 
-import { useActionState } from "react";
-import { RegisterState, registerAction } from "../actions";
-import {
-  Button,
-  Form,
-  Input,
-  Label,
-  Notification,
-} from "@/_components/ui";
-import styles from "./RegisterForm.module.css";
+import { useActionState } from 'react';
+import registerAction, {
+  type RegisterState,
+} from '@/lib/features/users/actions/registerAction';
+import { Button, Form, Input, Label, Notification } from '@/_components/ui';
+import styles from './RegisterForm.module.css';
 
 export const initialRegisterState: RegisterState = {
   error: null,
@@ -25,9 +21,7 @@ export default function RegisterForm() {
   return (
     <Form action={formAction} className={styles.form}>
       <Form.Field>
-        <Label htmlFor="name">
-          Имя пользователя
-        </Label>
+        <Label htmlFor="name">Имя пользователя</Label>
         <Input
           id="name"
           name="name"
@@ -41,9 +35,7 @@ export default function RegisterForm() {
       </Form.Field>
 
       <Form.Field>
-        <Label htmlFor="email">
-          Email
-        </Label>
+        <Label htmlFor="email">Email</Label>
         <Input
           id="email"
           name="email"
@@ -55,9 +47,7 @@ export default function RegisterForm() {
       </Form.Field>
 
       <Form.Field>
-        <Label htmlFor="password">
-          Пароль
-        </Label>
+        <Label htmlFor="password">Пароль</Label>
         <Input
           id="password"
           name="password"
@@ -70,9 +60,7 @@ export default function RegisterForm() {
       </Form.Field>
 
       <Form.Field>
-        <Label htmlFor="passwordConfirm">
-          Повтори пароль
-        </Label>
+        <Label htmlFor="passwordConfirm">Повтори пароль</Label>
         <Input
           id="passwordConfirm"
           name="passwordConfirm"
@@ -106,7 +94,7 @@ export default function RegisterForm() {
           disabled={isPending}
           className={styles.submitButton}
         >
-          {isPending ? "Создаём аккаунт…" : "Зарегистрироваться"}
+          {isPending ? 'Создаём аккаунт…' : 'Зарегистрироваться'}
         </Button>
       </Form.Field>
     </Form>

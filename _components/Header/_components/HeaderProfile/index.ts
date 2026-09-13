@@ -1,1 +1,1 @@
-export { default } from "./HeaderProfile"
+export { default } from './HeaderProfile';
